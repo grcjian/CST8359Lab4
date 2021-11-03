@@ -22,6 +22,7 @@ namespace Lab4.Models
          * title of the Community with ‘Required’ attribute, ‘StringLength’ attribute, with a value of max 50 and MinimumLength = 3
          */
         [StringLength(50, MinimumLength = 3)]
+        [Display(Name = "Title")]
         [Required]
         public string Title { get; set; }
 
