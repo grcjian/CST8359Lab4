@@ -24,8 +24,14 @@
     <tbody>
         @foreach (var item in Model.Communities)
         {
-            
-            <tr>
+
+            string selectedRow = "";
+            if (item.Id == ViewData["CommunityId"]?.ToString())
+            {
+                selectedRow = "success";
+            }
+
+            <tr class="@selectedRow">
                 <td>
                     @Html.DisplayFor(modelItem => item.Title)
                 </td>
@@ -43,8 +49,9 @@
     </tbody>
 </table>
 
-@if (Model.Communities != null)
+@if (Model.Students != null)
 {
+
     <h3>
         Members of the community
     </h3>
@@ -67,5 +74,12 @@
                 </td>
             </tr>
         }
+
+
+
     </table>
+}
+else
+{
+    <h4>No students record</h4>
 }
