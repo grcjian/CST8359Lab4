@@ -51,7 +51,7 @@ namespace Lab4
             {
 
                 app.UseExceptionHandler("/Home/Error");
-
+                app.UseDeveloperExceptionPage();
             }
 
             app.UseStaticFiles();
