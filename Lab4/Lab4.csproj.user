@@ -15,5 +15,6 @@
     <WebStackScaffolding_DbContextTypeFullName>Lab4.Data.SchoolCommunityContext</WebStackScaffolding_DbContextTypeFullName>
     <WebStackScaffolding_IsAsyncSelected>False</WebStackScaffolding_IsAsyncSelected>
     <WebStackScaffolding_IsViewGenerationSelected>True</WebStackScaffolding_IsViewGenerationSelected>
+    <NameOfLastUsedPublishProfile>C:\Users\jiant\OneDrive\文档\F2021\NET_Labs\CST8359Lab4\Lab4\Properties\PublishProfiles\tianyijianlab4 - Web Deploy.pubxml</NameOfLastUsedPublishProfile>
   </PropertyGroup>
 </Project>

@@ -21,7 +21,7 @@ namespace Lab4.Data
         {
             modelBuilder.Entity<Student>().ToTable("Student");
             modelBuilder.Entity<Community>().ToTable("Community");
-            modelBuilder.Entity<Community>().ToTable("CommunityMembership");
+            modelBuilder.Entity<CommunityMembership>().ToTable("CommunityMembership");
             modelBuilder.Entity<CommunityMembership>().HasKey(c => new
             {
                 c.StudentId,
