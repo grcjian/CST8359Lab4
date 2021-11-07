@@ -23,17 +23,46 @@ namespace Lab4.Controllers
         // GET: CommunityMemberships
         public async Task<IActionResult> Index(string id)
         {
+            
             var viewModel = new CommunityViewModel();
             viewModel.Communities = await _context.Communities
                 .Include(i => i.CommunityMemberships)
+                //.ThenInclude(j => j.Student)
                 .AsNoTracking()
                 .OrderBy(i => i.Id)
                 .ToListAsync();
-            if(id != null)
+            viewModel.Students = await _context.Students
+                .Include(j => j.CommunityMemberships)
+                .AsNoTracking()
+                .OrderBy(j => j.Id)
+                .ToListAsync();
+
+
+
+            if (id != null)
             {
                 ViewData["CommunityId"] = id;
+                
                 viewModel.CommunityMemberships = viewModel.Communities.Where(
                     x => x.Id == id).Single().CommunityMemberships;
+                var s = viewModel.CommunityMemberships.Where(z => z.CommunityId == id).Select(y=>y.StudentId);
+                int[] si = s.ToArray();
+                if(si.Length!>0)
+                {
+                    for(int a = 0; a < si.Length; a++)
+                    {
+                        int studentNumber = si[a];
+                        ViewData["Id"] = studentNumber;
+                        
+                        //viewModel.Students = viewModel.CommunityMemberships.Where(cm=>cm.StudentId==studentNumber).Single().Students;
+                        //viewModel.Students = viewModel.CommunityMemberships.Where(cm => cm.StudentId == studentNumber).Single().Students;
+                        //viewModel.CommunityMemberships = viewModel.Students.Where(stu => stu.Id == studentNumber).Single().CommunityMemberships;
+                        
+                        
+                    }
+                    //int studentNumber = si[0];
+                    //ViewData["StudentId"] = studentNumber;
+                }
             }
             return View(viewModel);
         }
