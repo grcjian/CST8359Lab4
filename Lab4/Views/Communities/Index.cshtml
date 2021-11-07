@@ -57,29 +57,35 @@
     </h3>
     <table class="table">
         <tr>
-            @if (Model.CommunityMemberships.Count() > 0)
+            @if (Model.Students.Count() > 0)
             {
-                <th> Name </th>
+            <th> Name </th>
             }
             else
             {
-                <th> No student record exist </th>
+            <th> No student record exist </th>
             }
         </tr>
-        @foreach (var item in Model.CommunityMemberships)
+
+
+        @foreach (var s in Model.Students)
         {
-            <tr>
-                <td>
-                    @item.StudentId
-                </td>
-            </tr>
+            @foreach (var item in Model.CommunityMemberships)
+            {
+
+                if(item.StudentId==s.Id){
+                    <tr>
+                        <td>
+                            @s.FullName
+                        </td>
+                    </tr>
+                    }
+            }
+
         }
 
 
 
     </table>
 }
-else
-{
-    <h4>No students record</h4>
-}
+
