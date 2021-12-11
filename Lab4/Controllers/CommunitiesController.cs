@@ -41,8 +41,7 @@ namespace Lab4.Controllers
 
             if (id != null)
             {
-                ViewData["CommunityId"] = id;
-                
+                ViewData["cId"] = id;
                 viewModel.CommunityMemberships = viewModel.Communities.Where(
                     x => x.Id == id).Single().CommunityMemberships;
                 var s = viewModel.CommunityMemberships.Where(z => z.CommunityId == id).Select(y=>y.StudentId);
@@ -52,7 +51,7 @@ namespace Lab4.Controllers
                     for(int a = 0; a < si.Length; a++)
                     {
                         int studentNumber = si[a];
-                        ViewData["Id"] = studentNumber;
+                        ViewData["StudntId"] = studentNumber;
                         
                         //viewModel.Students = viewModel.CommunityMemberships.Where(cm=>cm.StudentId==studentNumber).Single().Students;
                         //viewModel.Students = viewModel.CommunityMemberships.Where(cm => cm.StudentId == studentNumber).Single().Students;

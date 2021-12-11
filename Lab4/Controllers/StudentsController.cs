@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Lab4.Data;
 using Lab4.Models;
-
+using Lab4.Models.ViewModels;
 namespace Lab4.Controllers
 {
     public class StudentsController : Controller
@@ -19,10 +19,50 @@ namespace Lab4.Controllers
             _context = context;
         }
 
-        // GET: Students
-        public async Task<IActionResult> Index()
+        // GET: Communities
+        public async Task<IActionResult> Index(int id)
         {
-                return View(await _context.Students.ToListAsync());
+            var viewModel = new StudentViewModel();
+            viewModel.Students = await _context.Students
+                .Include(i => i.CommunityMemberships)
+                //.ThenInclude(j => j.Student)
+                .AsNoTracking()
+                .OrderBy(i => i.Id)
+                .ToListAsync();
+            viewModel.Communities = await _context.Communities
+                .Include(j => j.CommunityMemberships)
+                .AsNoTracking()
+                .OrderBy(j => j.Id)
+                .ToListAsync();
+
+
+
+            if (id != 0)
+            {
+                ViewData["sId"] = id;
+
+                viewModel.CommunityMemberships = viewModel.Students.Where(
+                    x => x.Id == id).Single().CommunityMemberships;
+                var s = viewModel.CommunityMemberships.Where(z => z.StudentId == id).Select(y => y.CommunityId);
+                string[] community = s.ToArray();
+                if (community.Length! > 0)
+                {
+                    for (int a = 0; a < community.Length; a++)
+                    {
+                        string communityNumber = community[a];
+                        ViewData["CommunityId"] = communityNumber;
+
+                        //viewModel.Students = viewModel.CommunityMemberships.Where(cm=>cm.StudentId==studentNumber).Single().Students;
+                        //viewModel.Students = viewModel.CommunityMemberships.Where(cm => cm.StudentId == studentNumber).Single().Students;
+                        //viewModel.CommunityMemberships = viewModel.Students.Where(stu => stu.Id == studentNumber).Single().CommunityMemberships;
+
+
+                    }
+                    //int studentNumber = si[0];
+                    //ViewData["StudentId"] = studentNumber;
+                }
+            }
+            return View(viewModel);
 
         }
 
