@@ -84,6 +84,24 @@ namespace Lab4.Controllers
             return View(community);
         }
 
+        //GET: Communities/AdsIndex/5
+        public async Task<IActionResult> AdsIndex(string id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var community = await _context.Communities
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (community == null)
+            {
+                return NotFound();
+            }
+
+            return View(community);
+        }
+
         // GET: Communities/Create
         public IActionResult Create()
         {
