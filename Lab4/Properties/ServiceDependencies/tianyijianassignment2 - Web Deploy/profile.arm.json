@@ -21,7 +21,7 @@
     },
     "resourceName": {
       "type": "string",
-      "defaultValue": "tianyijianlab4",
+      "defaultValue": "tianyijianassignment2",
       "metadata": {
         "description": "Name of the main resource to be created by this template."
       }

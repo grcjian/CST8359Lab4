@@ -1,0 +1,34 @@
+{
+  "dependencies": {
+    "storage1": {
+      "restored": true,
+      "restoreTime": "2021-12-11T04:36:27.96547Z"
+    },
+    "mssql2": {
+      "restored": true,
+      "restoreTime": "2021-12-11T04:35:59.1249015Z"
+    }
+  },
+  "parameters": {
+    "mssql2.subscriptionId": {
+      "Name": "mssql2.subscriptionId",
+      "Type": "subscription",
+      "Value": "c6399e02-144a-4aff-926c-64e2833dbf4c"
+    },
+    "storage1.resourceGroupName": {
+      "Name": "storage1.resourceGroupName",
+      "Type": "resourceGroup",
+      "Value": "Tianyi_Jian_Labs"
+    },
+    "storage1.subscriptionId": {
+      "Name": "storage1.subscriptionId",
+      "Type": "subscription",
+      "Value": "c6399e02-144a-4aff-926c-64e2833dbf4c"
+    },
+    "mssql2.resourceGroupName": {
+      "Name": "mssql2.resourceGroupName",
+      "Type": "resourceGroup",
+      "Value": "Tianyi_Jian_Labs"
+    }
+  }
+}
